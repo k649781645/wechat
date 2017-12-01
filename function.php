@@ -221,7 +221,9 @@ function arrayToObject($arr)
     {
         $obj = json_encode($arr);
         $obj = json_decode($obj);
-    }else {
+    }
+    else
+    {
         $obj = false;
     }
     return $obj;
@@ -239,7 +241,9 @@ function echoJson($json='')
         {
             header('Content-type: application/json');
             echo $json;
-        }else {
+        }
+        else
+        {
             echo $json;
             //echo 'Not valid json formatted data';
         }
@@ -248,6 +252,15 @@ function echoJson($json='')
     {
         echo 'Error: Parameter not a string';
     }
+}
+/**
+ * 从缓存读取Json配置
+ * 返回一个对象
+ */
+function getCacheJosn($key)
+{
+    $value = json_decode(cache($key));
+    return $value;
 }
 
 /**
@@ -280,4 +293,14 @@ function url($url,$param='')
         $url = 'http://'.$host.':'.$port.'/?'.$url;
     }
     return $url;
+}
+
+/**
+ * 友好输出错误信息
+ * @param 需要打印输出的变量
+ */
+function halt($var)
+{
+    header('Content-type:text/html;charset=utf-8');
+    echo $var;
 }
