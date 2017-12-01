@@ -87,7 +87,7 @@ class wechat
      * 检查网页授权特殊access token是否有效
      * 注意:这里的特殊token和openid是一一对应的，其中一个不对都返回false
      * @param  [string] $_token 网页授权特殊token
-     * @return [boolean] 有效返回true否则返回false
+     * @return [boolean] 有效返回true否则返回false 返回false时通常可以尝试刷新token
      */
     public function checkAuthTokenValid($token='',$openid='')
     {

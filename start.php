@@ -13,19 +13,20 @@
         //检查类是否存在
         if( class_exists( $class ) )
         {
-            $class = new $class();
+            $instance = new  $class();
+            //检查方法是否存在
+            if( method_exists($instance, $method) )
+            {
+                call_user_func_array(array($instance, $method), $param);
+            }
+            else
+            {
+                exit( 'Error: <b style="color:red;">' . $method . ' </b>method not exist in <b style="color:red;">' . $class .' </b>class.' );
+            }
         }
         else
         {
             exit( 'Error: <b style="color:red;">' . $class . ' </b>class not exist.');
         }
-        //检查方法是否存在
-        if( method_exists($class, $method) )
-        {
-            call_user_func_array(array($class, $method), $param);
-        }
-        else
-        {
-            exit( 'Error: <b style="color:red;">' . $method . ' </b>method not exist in <b style="color:red;">' . $class .' </b>class.' );
-        }
+
     }
